@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:groceryapp/model/cart_model.dart';
+import 'package:provider/provider.dart';
 import 'pages/intro_screen.dart';
 
 void main() => runApp(
@@ -10,9 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: IntroPage(),
-    );
+    // wrapping entire app with change notifier provider and give it cart model & child give it our app
+    return ChangeNotifierProvider(
+        create: (context) => CartModel(),
+        child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: IntroPage(),
+        ));
   }
 }
